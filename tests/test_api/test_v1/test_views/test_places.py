@@ -201,17 +201,13 @@ class TestPlacesSearchAPI(unittest.TestCase):
 
     def test_search_all_places_empty_request_body(self):
         """Test search_all_places with an empty request body."""
-        """
         response = self.client.post('/api/v1/places_search', json={})
         self.assertEqual(response.status_code, 200)
         data = response.json
         self.assertEqual(len(data), 3)
-        """
-        pass
 
     def test_search_all_places_with_states_and_cities(self):
         """Test search_all_places with states and cities specified."""
-        """
         request_body = {
             "states": [self.state_A.id],
             "cities": [self.city_A1.id]
@@ -220,12 +216,9 @@ class TestPlacesSearchAPI(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
         data = response.json
         self.assertEqual(len(data), 1)
-        """
-        pass
 
     def test_search_all_places_with_amenities(self):
         """Test search_all_places with amenities specified."""
-        """
         # Link amenities to places
         self.place_A1.amenities.append(self.amenity_wifi)
         self.place_A1.amenities.append(self.amenity_parking)
@@ -241,8 +234,6 @@ class TestPlacesSearchAPI(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
         data = response.json
         self.assertEqual(len(data), 2)
-        """
-        pass
 
 
 if __name__ == "__main__":
