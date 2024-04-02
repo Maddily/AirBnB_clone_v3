@@ -107,7 +107,8 @@ class Testplaces(unittest.TestCase):
         storage.new(self.place)
         storage.save()
 
-        response = self.client.delete('/api/v1/places/{}'.format(self.place.id))
+        response = self.client.delete('/api/v1/places/{}'.format(
+            self.place.id))
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.json, {})
 

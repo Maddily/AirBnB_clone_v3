@@ -73,7 +73,8 @@ class TestStates(unittest.TestCase):
         storage.new(self.state)
         storage.save()
 
-        response = self.client.delete('/api/v1/states/{}'.format(self.state.id))
+        response = self.client.delete('/api/v1/states/{}'.format(
+            self.state.id))
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.json, {})
 

@@ -37,7 +37,8 @@ class TestReviewAPI(unittest.TestCase):
         storage.save()
 
         # Test GET request
-        response = self.client.get('/api/v1/places/{}/reviews'.format(self.place.id))
+        response = self.client.get('/api/v1/places/{}/reviews'.format(
+            self.place.id))
         self.assertEqual(response.status_code, 200)
         data = response.json
         self.assertEqual(len(data), 3)
@@ -61,7 +62,8 @@ class TestReviewAPI(unittest.TestCase):
         storage.save()
 
         # Test DELETE request
-        response = self.client.delete('/api/v1/reviews/{}'.format(self.review.id))
+        response = self.client.delete('/api/v1/reviews/{}'.format(
+            self.review.id))
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.json, {})
 

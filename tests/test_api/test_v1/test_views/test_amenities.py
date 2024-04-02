@@ -62,7 +62,8 @@ class TestAmenities(unittest.TestCase):
         storage.new(self.amenity)
         storage.save()
 
-        response = self.client.get('/api/v1/amenities/{}'.format(self.amenity.id))
+        response = self.client.get('/api/v1/amenities/{}'.format(
+            self.amenity.id))
         self.assertEqual(response.status_code, 200)
         data = response.json
         self.assertEqual(data['name'], "TV")
@@ -73,7 +74,8 @@ class TestAmenities(unittest.TestCase):
         storage.new(self.amenity)
         storage.save()
 
-        response = self.client.delete('/api/v1/amenities/{}'.format(self.amenity.id))
+        response = self.client.delete('/api/v1/amenities/{}'.format(
+            self.amenity.id))
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.json, {})
 
@@ -102,7 +104,8 @@ class TestAmenities(unittest.TestCase):
         storage.save()
 
         data = {'name': 'Wifi'}
-        response = self.client.put('/api/v1/amenities/{}'.format(self.amenity.id),
+        response = self.client.put('/api/v1/amenities/{}'.format(
+            self.amenity.id),
                                    json=data)
         self.assertEqual(response.status_code, 200)
         data = response.json
