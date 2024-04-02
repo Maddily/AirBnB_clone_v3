@@ -50,7 +50,7 @@ class TestCityAPI(unittest.TestCase):
         storage.save()
 
         # Test GET request
-        response = self.client.get(f'/api/v1/states/{self.state.id}/cities')
+        response = self.client.get('/api/v1/states/{}/cities'.format(self.state.id))
         self.assertEqual(response.status_code, 200)
         data = response.json
         self.assertEqual(len(data), 2)
@@ -67,7 +67,7 @@ class TestCityAPI(unittest.TestCase):
         storage.save()
 
         # Test GET request
-        response = self.client.get(f'/api/v1/cities/{self.city.id}')
+        response = self.client.get('/api/v1/cities/{}'.format(self.city.id))
         self.assertEqual(response.status_code, 200)
         data = response.json
         self.assertEqual(data['name'], "San Francisco")
@@ -82,7 +82,7 @@ class TestCityAPI(unittest.TestCase):
         storage.save()
 
         # Test DELETE request
-        response = self.client.delete(f'/api/v1/cities/{self.city.id}')
+        response = self.client.delete('/api/v1/cities/{}'.format(self.city.id))
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.json, {})
 
@@ -100,7 +100,7 @@ class TestCityAPI(unittest.TestCase):
 
         # Test POST request
         new_city_data = {'name': 'San Jose'}
-        response = self.client.post(f'/api/v1/states/{self.state.id}/cities',
+        response = self.client.post('/api/v1/states/{}/cities'.format(self.state.id),
                                     json=new_city_data)
         self.assertEqual(response.status_code, 201)
         data = response.json
@@ -121,7 +121,7 @@ class TestCityAPI(unittest.TestCase):
 
         # Test PUT request
         updated_city_data = {'name': 'Los Angeles'}
-        response = self.client.put(f'/api/v1/cities/{self.city.id}',
+        response = self.client.put('/api/v1/cities/{}'.format(self.city.id),
                                    json=updated_city_data)
         self.assertEqual(response.status_code, 200)
         data = response.json
