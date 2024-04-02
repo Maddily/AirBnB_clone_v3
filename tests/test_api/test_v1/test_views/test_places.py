@@ -96,7 +96,7 @@ class Testplaces(unittest.TestCase):
         storage.new(self.place)
         storage.save()
 
-        response = self.client.get(f'/api/v1/places/{self.place.id}')
+        response = self.client.get('/api/v1/places/{}'.format(self.place.id))
         self.assertEqual(response.status_code, 200)
         data = response.json
         self.assertEqual(data['name'], "Roof")
@@ -107,7 +107,8 @@ class Testplaces(unittest.TestCase):
         storage.new(self.place)
         storage.save()
 
-        response = self.client.delete(f'/api/v1/places/{self.place.id}')
+        response = self.client.delete('/api/v1/places/{}'.format(
+            self.place.id))
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.json, {})
 
@@ -138,7 +139,7 @@ class Testplaces(unittest.TestCase):
         storage.save()
 
         data = {'name': 'Penthouse'}
-        response = self.client.put(f'/api/v1/places/{self.place.id}',
+        response = self.client.put('/api/v1/places/{}'.format(self.place.id),
                                    json=data)
         self.assertEqual(response.status_code, 200)
         data = response.json

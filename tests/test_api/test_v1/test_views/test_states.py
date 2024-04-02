@@ -62,7 +62,7 @@ class TestStates(unittest.TestCase):
         storage.new(self.state)
         storage.save()
 
-        response = self.client.get(f'/api/v1/states/{self.state.id}')
+        response = self.client.get('/api/v1/states/{}'.format(self.state.id))
         self.assertEqual(response.status_code, 200)
         data = response.json
         self.assertEqual(data['name'], "California")
@@ -73,7 +73,8 @@ class TestStates(unittest.TestCase):
         storage.new(self.state)
         storage.save()
 
-        response = self.client.delete(f'/api/v1/states/{self.state.id}')
+        response = self.client.delete('/api/v1/states/{}'.format(
+            self.state.id))
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.json, {})
 
@@ -87,7 +88,7 @@ class TestStates(unittest.TestCase):
         storage.save()
 
         data = {'name': 'Twilight'}
-        response = self.client.post(f'/api/v1/states/', json=data)
+        response = self.client.post('/api/v1/states/', json=data)
         self.assertEqual(response.status_code, 201)
         data = response.json
         self.assertEqual(data['name'], 'Twilight')
@@ -102,7 +103,7 @@ class TestStates(unittest.TestCase):
         storage.save()
 
         data = {'name': 'Twilight'}
-        response = self.client.put(f'/api/v1/states/{self.state.id}',
+        response = self.client.put('/api/v1/states/{}'.format(self.state.id),
                                    json=data)
         self.assertEqual(response.status_code, 200)
         data = response.json

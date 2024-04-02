@@ -92,7 +92,7 @@ class TestUserAPI(unittest.TestCase):
                 'email': 'obi-wan@jedi.com',
                 'password': 'forceghost'
                 }
-        response = self.client.put(f'/api/v1/users/{self.user.id}',
+        response = self.client.put('/api/v1/users/{}'.format(self.user.id),
                                    json=updated_user_data)
         self.assertEqual(response.status_code, 200)
         data = response.json
